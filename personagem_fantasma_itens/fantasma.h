@@ -6,6 +6,7 @@ typedef struct Fantasma{
     float position_x;
     float position_y;
     Texture desenho;
+    Rectangle frame;
     Rectangle hitbox;
 }Fantasma;
 

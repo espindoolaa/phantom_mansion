@@ -22,13 +22,14 @@ Personagem CreatePerson(float x, float y, Texture des){ //cria o personagem
         .position_y = y,
         .itens = "oooo",
         .desenho = des,
+        .frame = (Rectangle){0, 63,39 ,84},
         .hitbox = (Rectangle){x, y, 13 * size, 21 * size}
     };
 
     return pessoa;
 }
 
-void ModifyPerson(Personagem *person, int *framesCounter, int *currentFrame, Rectangle *scale){
+void ModifyPerson(Personagem *person, int *framesCounter, int *currentFrame){
     const float speed = 3;
     const float frameSpeed = 3;
     Rectangle aux = (Rectangle){0, 63, 13, 21};
@@ -60,7 +61,7 @@ void ModifyPerson(Personagem *person, int *framesCounter, int *currentFrame, Rec
     }
 
     person->hitbox = (Rectangle){person->position_x, person->position_y, 13 * size, 21 * size};
-    *scale = aux;
+    person->frame = aux;
 }
 
 void InteracPerson(Personagem *person, Item *item){

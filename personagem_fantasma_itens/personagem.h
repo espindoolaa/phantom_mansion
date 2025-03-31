@@ -8,6 +8,7 @@ typedef struct Personagem{
     float position_y;
     char itens[max_bag];
     Texture desenho;
+    Rectangle frame;
     Rectangle hitbox;
 }Personagem; 
 

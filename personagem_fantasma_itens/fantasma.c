@@ -14,13 +14,14 @@ Fantasma CreateGhost(float x, float y, Texture des){
         .position_x = x,
         .position_y = y,
         .desenho = des,
+        .frame = (Rectangle){0, 0, 15, 20},
         .hitbox = (Rectangle){x, y, 15 * size, 20 * size}
     };
     
     return ghost;
 }
 
-void MovementGhost(float x_person, float y_person, Fantasma *ghost, int currentFrame, Rectangle *frame){
+void MovementGhost(float x_person, float y_person, Fantasma *ghost, int currentFrame){
     const float speed = 1;
     Rectangle aux = {ghost->position_x, ghost->position_y, 15, 20};
 
@@ -47,6 +48,6 @@ void MovementGhost(float x_person, float y_person, Fantasma *ghost, int currentF
 
 
     ghost->hitbox = (Rectangle){ghost->position_x, ghost->position_y, aux.width * size, aux.height * size};
-    *frame = aux;
+    ghost->frame = aux;
 }
 #endif
