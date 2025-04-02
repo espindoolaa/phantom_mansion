@@ -4,7 +4,6 @@
 #include "personagem.c"
 #include "fantasma.c"
 #include "item.c"
-#include "porta.c"
 
 
 
