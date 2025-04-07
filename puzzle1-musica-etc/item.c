@@ -1,7 +1,8 @@
+#ifndef ITEM_C
+#define ITEM_C
 #include "item.h"
 #include "raylib.h"
 #define size 5
-#define scale_up 1.2
 
 //para criar um item, primeiro importe este aquivo C
 //vá no arquivo main e crie uma variavel 'sprite' do tipo 'Texture' e importe a imagem do item
@@ -30,11 +31,4 @@ bool SafePassword(){
     return keyPressed;
 }
 
-void MoveItem(int char_apertado, Item *movido){
-    //movimenta o personagem
-    const float speed = 1;
-    if (char_apertado == 65){movido->position_x = movido->position_x - speed;}
-    else if (char_apertado == 68){movido->position_x = movido->position_x + speed;}
-    else if (char_apertado == 87){movido->position_y = movido->position_y - speed;}
-    else if (char_apertado == 83){movido->position_y = movido->position_y + speed;}
-}
+#endif

@@ -11,10 +11,5 @@ typedef struct Item{
     Rectangle hitbox;
 }Item;
 
-
-Item CreateItem(float x, float y, Texture des, int in);
-
-bool SafePassword();
-
-void MoveItem(int char_apertado, Item *movido);
+#include "item.c"
 #endif

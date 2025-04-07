@@ -1,3 +1,5 @@
+#ifndef PERSONAGEM_C
+#define PERSONAGEM_C
 #include "raylib.h"
 #include "personagem.h"
 #include "string.h"
@@ -132,16 +134,4 @@ void CofreCheck(bool texto, char cod[4], int *senha, Personagem *person){
     }
 }
 
-void XadrezCheck(bool texto, Personagem *person, Item *cavalo){ 
-    if(texto){
-        Caixa_de_Texto();
-        DrawText("UM XADREZ COM A...PARTIDA NO MEIO? DEVE ESTAR PERTO DO FIM!", 302 * scale_up, 602 * scale_up, 40, GRAY);
-        DrawText("Use W, A, S, e D para mexer o cavalo", 42, 25, 20, GRAY);
-
-        int digito = GetCharPressed();
-        MoveItem(digito, cavalo);
-        if ((cavalo->position_x + 20 < 1065 && cavalo->position_x + 20> 1005) && (cavalo->position_y + 125 < 410 && cavalo->position_y + 125 > 338)){
-            DrawText("colidiu", 200,900, 40, BLACK);
-        }
-    }
-}
+#endif
