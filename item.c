@@ -32,7 +32,7 @@ bool SafePassword(){
 
 void MoveItem(int char_apertado, Item *movido){
     //movimenta o personagem
-    const float speed = 1;
+    const float speed = 14;
     if (char_apertado == 65){movido->position_x = movido->position_x - speed;}
     else if (char_apertado == 68){movido->position_x = movido->position_x + speed;}
     else if (char_apertado == 87){movido->position_y = movido->position_y - speed;}
