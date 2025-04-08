@@ -1,9 +1,8 @@
-#ifndef PERSONAGEM_C
-#define PERSONAGEM_C
 #include "raylib.h"
 #include "personagem.h"
 #include "string.h"
 #include "item.h"
+#include "colisoes.h"
 #define size 5
 #define scale_up 1.2
 
@@ -21,36 +20,66 @@ Personagem CreatePerson(float x, float y, Texture des){ //cria o personagem
     Personagem pessoa = {
         .position_x = x,
         .position_y = y,
+        .arrow = 3,
         .itens = "oooo",
         .desenho = des,
-        .hitbox = (Rectangle){x, y, 13 * size, 21 * size}
+        .hitbox = (Rectangle){x, y, 13 * size, 21 * size},
+        .colision_left = (Rectangle){x - 2, y + 62, 1, 40},
+        .colision_right = (Rectangle){x + 13 * size, y + 62, 2, 40},
+        .colision_up = (Rectangle){x, y + 60, 13 * size - 5, 2},
+        .colision_down = (Rectangle){x, y + 21 *size, 13 * size - 5, 21 * size + 2}
     };
 
     return pessoa;
 }
 
-void ModifyPerson(Personagem *person, int *framesCounter, int *currentFrame, Rectangle *scale, bool PodeAndar){
+void ModifyPerson(Personagem *person, int *framesCounter, int *currentFrame, Rectangle *scale, bool PodeAndar, Colisoes1 mapa_colisoes){
     const float speed = 3;
     const float frameSpeed = 3;
     Rectangle aux = (Rectangle){0, 63, 13, 21};
 
+    bool vai_colidir = false;
+
     int multplier = 13 * (*currentFrame);
     if(PodeAndar){
     if (IsKeyDown(KEY_LEFT)||IsKeyDown(KEY_A)){
-        person->position_x = person->position_x - speed;
-        aux = (Rectangle){multplier, 0, 13, 21};
+        person->arrow = 0;
+        vai_colidir = WillCollide1(person->colision_left, mapa_colisoes);
+        if (vai_colidir == false){
+            person->position_x = person->position_x - speed;
+            aux = (Rectangle){multplier, 0, 13, 21};
+        }
+        else {aux = (Rectangle){0, 21 * person->arrow, 13, 21};}
     }
     else if (IsKeyDown(KEY_RIGHT)||IsKeyDown(KEY_D)){
-        person->position_x = person->position_x + speed;
-        aux = (Rectangle){multplier, 21, 13, 21};
+        person->arrow = 1;
+        vai_colidir = WillCollide1(person->colision_right, mapa_colisoes);
+        if (vai_colidir == false){
+            person->position_x = person->position_x + speed;
+            aux = (Rectangle){multplier, 21, 13, 21};
+        }
+        else {aux = (Rectangle){0, 21 * person->arrow, 13, 21};}
     }
     else if (IsKeyDown(KEY_UP)||IsKeyDown(KEY_W)){
-        person->position_y = person->position_y - speed;
-        aux = (Rectangle){multplier, 42, 13, 21};
+        person->arrow = 2;
+        vai_colidir = WillCollide1(person->colision_up, mapa_colisoes);
+        if (vai_colidir == false){
+            person->position_y = person->position_y - speed;
+            aux = (Rectangle){multplier, 42, 13, 21};
+        }
+        else {aux = (Rectangle){0, 21 * person->arrow, 13, 21};}
     }
     else if (IsKeyDown(KEY_DOWN)||IsKeyDown(KEY_S)){
-        person->position_y = person->position_y + speed;
-        aux = (Rectangle){multplier, 63, 13, 21};
+        person->arrow = 3;
+        vai_colidir = WillCollide1(person->colision_down, mapa_colisoes);
+        if (vai_colidir == false){
+            person->position_y = person->position_y + speed;
+            aux = (Rectangle){multplier, 63, 13, 21};
+        }
+        else {aux = (Rectangle){0, 21 * person->arrow, 13, 21};}
+    }
+    else {
+        aux = (Rectangle){0, 21 * person->arrow, 13, 21};
     }
     
     *framesCounter = *framesCounter + 1;
@@ -59,6 +88,14 @@ void ModifyPerson(Personagem *person, int *framesCounter, int *currentFrame, Rec
         if (*currentFrame > 2) {*currentFrame = 0;}
         *framesCounter = 0;
     }
+
+
+
+    person->colision_left = (Rectangle){person->position_x - 2, person->position_y + 67, 1, 30};
+    person->colision_right = (Rectangle){person->position_x + 13 * size, person->position_y + 67, 2, 30};
+    person->colision_up = (Rectangle){person->position_x + 5, person->position_y + 60, 13 * size - 10, 2};
+    person->colision_down = (Rectangle){person->position_x + 5, person->position_y + 21 *size, 13 * size - 10, 2};
+
 
     person->hitbox = (Rectangle){person->position_x, person->position_y, 13 * size, 21 * size};
     *scale = aux;
@@ -133,5 +170,3 @@ void CofreCheck(bool texto, char cod[4], int *senha, Personagem *person){
         }
     }
 }
-
-#endif

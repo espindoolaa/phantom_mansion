@@ -1,5 +1,3 @@
-#ifndef ITEM_C
-#define ITEM_C
 #include "item.h"
 #include "raylib.h"
 #define size 5
@@ -10,14 +8,14 @@
 //use a função 'CreateItem' para inicializar o item
 //obs: funciona para qualquer tipo de item coletavel
 
-Item CreateItem(float x, float y, Texture des, int in){
+Item CreateItem(float x, float y, Texture des, int in, int size_x, int size_y){
     Item any = {
         .position_x = x,
         .position_y = y,
         .coletavel = false,
         .inventario = in,
         .desenho = des,
-        .hitbox = (Rectangle){x, y, des.width * size, des.height * size}
+        .hitbox = (Rectangle){x, y, size_x * size, size_y * size}
     };
 
     return any;
@@ -30,5 +28,3 @@ bool SafePassword(){
     if ((key >= 48) && (key <= 57)) keyPressed = true;
     return keyPressed;
 }
-
-#endif
