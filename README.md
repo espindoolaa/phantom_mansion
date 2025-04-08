@@ -5,11 +5,11 @@ Projeto da disciplina de Programação Imperativa, cujo objetivo é o desenvolvi
 # Integrantes:
 Arthur Henrique dos Santos Silva () - colisões com mapa
 
-Deyvson Gabriel Bastos Fernandes (dgbf) - personagem, fantasma, itens 
+Deyvson Gabriel Bastos Fernandes (dgbf) - personagem, fantasma, itens, colisões 
 
 Ronaldo Felipe (rffn) - menu e sprites
 
-Mário Teles (mdtsf) - puzzles, musíca e som
+Mário Teles (mdtsf) - puzzles, itens, música e som
 
 Miriam Gonzaga (mgss4) - menu, colisões e ajustes
 
