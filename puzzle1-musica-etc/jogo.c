@@ -15,12 +15,17 @@ int main(){
     bool PodeAndar = true;
     bool dica_na_tela = false;
     bool cofre_na_tela = false;
-    bool geladeira_na_tela = false; 
+    bool geladeira_na_tela = false;
+    bool portao_cozinha_na_tela = false;  
 
     int senha = 0;
     char cod[4];
 
-    //area dos sprites
+    // senha portão 
+    int senha_portao = 0;
+    char cod_portao[4];
+
+    // area dos sprites
     Texture fundo_mapa, sprite_personagem, sprite_alicate, sprite_baronesa, sprite_diario, sprite_lamp, sprite_lamp_fire, sprite_oil, sprite_dica_p1, sprite_geladeira;
     fundo_mapa = LoadTexture("./backgrounds/cozinha.png");
 
@@ -61,8 +66,11 @@ int main(){
     Item info_alicate = CreateItem(1500, 193, sprite_alicate, 1);
     info_alicate.coletavel = true;
     
-
+    // Cofre
     Item info_cofre = CreateItem(145 * scale_up, 150 * scale_up, sprite_diario, 0);
+
+    // Portão Cozinha
+    Item info_portao_cozinha = CreateItem(1300, 750, sprite_diario, 0);
 
     // Geladeira 
     Item info_geladeira = CreateItem(810, 200, sprite_diario, 0);
@@ -114,13 +122,17 @@ int main(){
             geladeira_na_tela = !geladeira_na_tela; 
             PodeAndar = !geladeira_na_tela; 
         }
-    
-
+        
         //efeito sonoro de coletar
-        if(InteracPerson(&info_personagem, &info_oil) == 2||InteracPerson(&info_personagem, &info_lamp) == 2){
+        if(InteracPerson(&info_personagem, &info_oil) == 2 || InteracPerson(&info_personagem, &info_lamp) == 2){
             PlaySound(collect); 
         }
-        
+
+        // efeito sonoro ao coletar o alicate
+        if (InteracPerson(&info_personagem, &info_alicate) == 2) {
+            PlaySound(collect); 
+        }
+
 
         //interacao com o cofre
         if(InteracPerson(&info_personagem, &info_cofre) == 1){
@@ -132,7 +144,25 @@ int main(){
             }
         }
 
-        CofreCheck(cofre_na_tela, cod, &senha, &info_personagem);
+         //interacao com o portão
+        if(InteracPerson(&info_personagem, &info_portao_cozinha) == 1){
+            PodeAndar = !PodeAndar;
+            portao_cozinha_na_tela = !portao_cozinha_na_tela;
+            if(senha == 3 && strcmp(cod, "CIN") != 0){
+                senha = 0;
+                cod[senha] = '\0';
+            }
+        }
+        
+        if (cofre_na_tela){
+           CofreCheck(cofre_na_tela, cod, &senha, &info_personagem);
+        }
+        
+        if (portao_cozinha_na_tela){
+            PortaoCheck(portao_cozinha_na_tela, cod, &senha, &info_personagem);
+        }
+ 
+       
     
         DrawRectangleRec(info_personagem.hitbox, BLUE);
         DrawTexturePro(sprite_personagem, frame_personagem, info_personagem.hitbox, (Vector2){info_personagem.hitbox.width - 13*size, info_personagem.hitbox.height - 21*size}, 0, WHITE);

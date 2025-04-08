@@ -134,4 +134,40 @@ void CofreCheck(bool texto, char cod[4], int *senha, Personagem *person){
     }
 }
 
+void PortaoCheck(bool texto, char cod[4], int *senha, Personagem *person){ 
+    if(texto){
+        Caixa_de_Texto();
+        DrawText("HMM... AGORA SÃO TRÊS LETRAS. QUAL SERÁ A SENHA?", 302 * scale_up, 602 * scale_up, 40, GRAY);
+
+        int digito = GetCharPressed();
+        if((digito >= 65 && digito <= 90) && (*senha < 3)){
+                cod[*senha] = (char)digito;
+                cod[*senha+1] = '\0';
+                *senha += 1;
+            }
+        if(IsKeyPressed(KEY_BACKSPACE)){
+            *senha -= 1;
+            if(*senha < 0) *senha = 0;
+            cod[*senha] = '\0';
+        }
+
+        DrawText(cod, 302 * scale_up, 602 * scale_up + 40, 40, GRAY);
+
+        if(*senha == 3){
+            if((strcmp(cod, "CIN") == 0) || (strcmp(cod, "cin") == 0)){
+                Caixa_de_Texto();
+                DrawText("FUNCIONOU!", 302 * scale_up, 602 * scale_up, 40, GRAY);
+                DrawText("O PORTÃO ABRIU!", 302 * scale_up, 602 * scale_up + 40, 40, GRAY);
+                person->itens[2] = 'i';
+            }
+            else{
+                Caixa_de_Texto();
+                DrawText("SENHA ERRADA, MELECA!", 302 * scale_up, 602 * scale_up, 40, GRAY);
+            }
+        }
+    }
+}
+
+
+
 #endif
