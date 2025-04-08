@@ -21,9 +21,4 @@ void CofreCheck(bool texto, char cod[4], int *senha, Personagem *person);
 void XadrezCheck(bool texto, Personagem *person, Item *cavalo);
 
 
-
-
-
-
-
 #endif

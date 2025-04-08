@@ -65,9 +65,9 @@ void ModifyPerson(Personagem *person, int *framesCounter, int *currentFrame, Rec
 
 int InteracPerson(Personagem *person, Item *item){
     if(CheckCollisionRecs(person->hitbox, item->hitbox) == true){
-        DrawRectangle(20, 20, 300, 30, BLACK);
-        DrawRectangleLines(20, 20, 300, 30, RED);
-        DrawText("APERTE E PARA INTERAGIR", 22, 25, 20, GRAY);
+        DrawRectangle(20, 20, 300, 30, WHITE);
+        DrawRectangleLines(20, 20, 300, 30, SKYBLUE);
+        DrawText("APERTE E PARA INTERAGIR", 22, 25, 20, DARKBLUE);
         if (IsKeyPressed(KEY_E)){
             if(item->coletavel == true){
                 person->itens[item->inventario] = 'i';
@@ -94,14 +94,14 @@ int LampCheck(Personagem *person){
 
 void Caixa_de_Texto(){
     Rectangle ret = {300 * scale_up, 600 * scale_up, 900 * scale_up, 250 * scale_up};
-    DrawRectangleRec(ret , BLACK);
-    DrawRectangleLines(300 * scale_up, 600 * scale_up, 900 * scale_up, 250 * scale_up, RED);
+    DrawRectangleRec(ret , WHITE);
+    DrawRectangleLines(300 * scale_up, 600 * scale_up, 900 * scale_up, 250 * scale_up, SKYBLUE);
 }
 
 void CofreCheck(bool texto, char cod[4], int *senha, Personagem *person){ 
     if(texto){
         Caixa_de_Texto();
-        DrawText("HMM... 3 DIGITOS, QUAL DEVE SER A SENHA?", 302 * scale_up, 602 * scale_up, 40, GRAY);
+        DrawText("HMM... 3 DIGITOS, QUAL DEVE SER A SENHA?", 302 * scale_up, 602 * scale_up, 40, DARKBLUE);
 
         int digito = GetCharPressed();
         if((digito >= 48) && (digito <= 57) && (*senha < 3)){
@@ -115,18 +115,18 @@ void CofreCheck(bool texto, char cod[4], int *senha, Personagem *person){
             cod[*senha] = '\0';
         }
 
-        DrawText(cod, 302 * scale_up, 602 * scale_up + 40, 40, GRAY);
+        DrawText(cod, 302 * scale_up, 602 * scale_up + 40, 40, DARKBLUE);
 
         if(*senha == 3){
             if(strcmp(cod, "508") == 0){
                 Caixa_de_Texto();
-                DrawText("FUNCIONOU!", 302 * scale_up, 602 * scale_up, 40, GRAY);
-                DrawText("TINHA UM MACHADO DENTRO DO COFRE!", 302 * scale_up, 602 * scale_up + 40, 40, GRAY);
+                DrawText("FUNCIONOU!", 302 * scale_up, 602 * scale_up, 40, DARKBLUE);
+                DrawText("TINHA UM MACHADO DENTRO DO COFRE!", 302 * scale_up, 602 * scale_up + 40, 40, DARKBLUE);
                 person->itens[2] = 'i';
             }
             else{
                 Caixa_de_Texto();
-                DrawText("SENHA ERRADA, MELECA.", 302 * scale_up, 602 * scale_up, 40, GRAY);
+                DrawText("SENHA ERRADA, MELECA.", 302 * scale_up, 602 * scale_up, 40, DARKBLUE);
             }
         }
     }
@@ -135,8 +135,12 @@ void CofreCheck(bool texto, char cod[4], int *senha, Personagem *person){
 void XadrezCheck(bool texto, Personagem *person, Item *cavalo){ 
     if(texto){
         Caixa_de_Texto();
-        DrawText("UM XADREZ COM A...PARTIDA NO MEIO? DEVE ESTAR PERTO DO FIM!", 302 * scale_up, 602 * scale_up, 40, GRAY);
-        DrawText("Use W, A, S, e D para mexer o cavalo", 42, 25, 20, GRAY);
+        DrawText("UM XADREZ COM A...PARTIDA NO MEIO?", 302 * scale_up, 602 * scale_up, 40, DARKBLUE);
+        DrawText("DEVE ESTAR PERTO DO FIM!", 302 * scale_up, 672 * scale_up, 40, DARKBLUE);
+        DrawRectangle(20, 50, 390, 30, WHITE);
+        DrawRectangleLines(20, 50, 390, 30, SKYBLUE);
+        DrawText("Use W, A, S, e D para mexer o cavalo", 22, 51, 20, DARKBLUE);
+        
 
         int digito = GetCharPressed();
         MoveItem(digito, cavalo);
