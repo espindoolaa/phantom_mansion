@@ -91,3 +91,5 @@ A partir da interação com os itens, o personagem recebe dicas para liberar pas
 Após resolver o útlimo puzzle, no qual o usuário deve decidir movimentos, o personagem recebe dicas para abrir passagem pro quarto da baronesa, onde o mistério é resolvido e o jogo é concluído. 
 
 ![quarto_liberado.jpg](attachment:ccd12d19-2854-4c08-87d0-3e6821a5fbac:quarto_liberado.jpg)
+
+https://www.notion.so/PHANTOM-MANSION-README-1d027dd58d4a80309001fed5c59e0c45?pvs=4
