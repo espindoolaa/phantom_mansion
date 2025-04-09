@@ -1,5 +1,3 @@
-#ifndef FANTASMA_C
-#define FANTASMA_C
 #include "raylib.h"
 #include "fantasma.h"
 #define size 5
@@ -49,4 +47,3 @@ void MovementGhost(float x_person, float y_person, Fantasma *ghost, int currentF
     ghost->hitbox = (Rectangle){ghost->position_x, ghost->position_y, aux.width * size, aux.height * size};
     *frame = aux;
 }
-#endif

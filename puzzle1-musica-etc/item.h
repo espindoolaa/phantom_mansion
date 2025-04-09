@@ -11,5 +11,7 @@ typedef struct Item{
     Rectangle hitbox;
 }Item;
 
-#include "item.c"
+Item CreateItem(float x, float y, Texture des, int in, int size_x, int size_y);
+bool SafePassword();
+
 #endif
