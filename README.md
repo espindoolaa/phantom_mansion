@@ -1,3 +1,5 @@
+# **PHANTOM MANSION**
+
 Jogo “**PHANTOM MANSION**” elaborado por estudantes da disciplina de Fundamentos de Programação Imperativa (CIN 005/6) - 2024.2 como requisito de avaliação dos conhecimentos abordados em aula. 
 
 ## **Integrantes e Distribuição de Tarefas:**
