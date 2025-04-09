@@ -168,6 +168,26 @@ void PortaoCheck(bool texto, char cod[4], int *senha, Personagem *person){
     }
 }
 
+void DrawInventory(Personagem *person){
+    int startX = 20;
+    int startY = 20;
+    int slotSize = 60;
+
+    DrawText("Inventário:", startX, startY - 30, 20, BLACK);
+    
+    for(int i = 0; i < max_bag; i++){
+        Rectangle slot = { startX + i * (slotSize + 10), startY, slotSize, slotSize };
+        DrawRectangleRec(slot, LIGHTGRAY);
+        DrawRectangleLinesEx(slot, 2, DARKGRAY);
+
+        if(person->itens[i] == 'i'){
+            // Exemplo: desenha uma letra ou símbolo no slot
+            DrawText("I", slot.x + 20, slot.y + 15, 20, RED);
+            // Alternativamente, pode desenhar ícones com DrawTextureEx()
+        }
+    }
+}
+
 
 
 #endif

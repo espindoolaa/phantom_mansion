@@ -34,12 +34,13 @@ int main(){
     sprite_diario = LoadTexture("./sprites/item.png");
 
     sprite_lamp = LoadTexture("./sprites/lamp.png");
-    sprite_lamp_fire = LoadTexture("./sprites/light lamp.png");//
+    sprite_lamp_fire = LoadTexture("./sprites/light lamp.png");
     sprite_oil = LoadTexture("./sprites/oil.png");
     sprite_dica_p1 = LoadTexture("./sprites/dicap1.png");
 
     sprite_alicate = LoadTexture("./sprites/alicate.png");
     sprite_geladeira = LoadTexture("./sprites/fridge_puzzle.png");
+    //sprite_inventario = LoadTexture("./sprites/inventario.png");
     
 
     //personagem
@@ -48,7 +49,7 @@ int main(){
     
     Rectangle frame_personagem = (Rectangle){0, 63,39 ,84};
 
-    //fantasma
+    // Fantasma
     Fantasma info_baronesa;
     info_baronesa = CreateGhost(1940, 900, sprite_baronesa);//
     Rectangle frame_baronesa = (Rectangle){0, 0, 15, 20};
@@ -177,10 +178,12 @@ int main(){
         DrawTextureEx(sprite_lamp, (Vector2){info_lamp.position_x, info_lamp.position_y}, 0, 5, WHITE);//
         DrawTextureEx(sprite_alicate, (Vector2){info_alicate.position_x, info_alicate.position_y}, 0, 1.8, WHITE);//
         DrawTextureEx(sprite_oil, (Vector2){info_oil.position_x, info_oil.position_y}, 0, 5, WHITE); //
+        DrawRectangleRec((Rectangle){0, 0, 320, 130}, BLUE);
         
         EndDrawing();
     }
-
+    
+    
     UnloadTexture(fundo_mapa);
 
     UnloadTexture(sprite_personagem);
